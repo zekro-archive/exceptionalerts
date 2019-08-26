@@ -1,6 +1,6 @@
 # Exception Alerts
 
-**You knwo the situation?**
+**You know the situation?**
 
 You are always waking up at the same time every work day, so you have an alert set for the same time each day. Then, you want to make home office or something like that and you want to wake up later as usual. So you disable your alert and create a new one for the later time. Then, on the next day, you forget to re-enable the default alert and you overslept.
 
