@@ -35,7 +35,6 @@ class MyHomePageState extends State<MyHomePage> {
         onPressed: () => this.navigateToNewAlertPage(context),
         tooltip: 'Increment',
         child: Icon(Icons.add),
-        // backgroundColor: Color.fromARGB(256, 3, 41, 42),
       ),
     );
   }

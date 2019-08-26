@@ -1,3 +1,5 @@
+import 'package:exceptionalerts/components/picker_button.dart';
+import 'package:exceptionalerts/models/alert.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -8,6 +10,7 @@ class CreateAlertPage extends StatefulWidget {
 
 class CreateAlertPageState extends State<CreateAlertPage> {
   final textAlertNameController = TextEditingController();
+  DateTime dateTime;
 
   void _showErrorSnackBar(BuildContext context, String content) {
     Scaffold.of(context).showSnackBar(SnackBar(
@@ -21,7 +24,12 @@ class CreateAlertPageState extends State<CreateAlertPage> {
       _showErrorSnackBar(context, "Please enter a name for the alert!");
       return;
     }
-    Navigator.pop(context, textAlertNameController.text);
+    Navigator.pop(
+        context,
+        AlertModel(
+          name: textAlertNameController.text,
+          time: null,
+        ));
   }
 
   @override
@@ -36,6 +44,40 @@ class CreateAlertPageState extends State<CreateAlertPage> {
                 decoration: InputDecoration(hintText: "Name of the Alert"),
                 controller: textAlertNameController,
               ),
+              Text(
+                dateTime != null ? dateTime.toIso8601String() : 'unset',
+                textAlign: TextAlign.left,
+              ),
+              Row(
+                children: <Widget>[
+                  PickerButton(
+                    child: Icon(
+                      Icons.access_time,
+                      color: Colors.white,
+                    ),
+                    onPressed: () {
+                      final now = DateTime.now();
+                      var date = showDatePicker(
+                          context: context,
+                          initialDate: now,
+                          firstDate: now,
+                          lastDate: DateTime(2999),
+                          builder: (BuildContext context, Widget child) {
+                            return Theme(
+                              data: ThemeData.light(),
+                              child: child,
+                            );
+                          });
+
+                      date.then((v) {
+                        setState(() {
+                          dateTime = v;
+                        });
+                      });
+                    },
+                  )
+                ],
+              )
             ],
           ),
         ),
