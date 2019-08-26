@@ -15,10 +15,7 @@ class MyHomePageState extends State<MyHomePage> {
 
   void navigateToNewAlertPage(BuildContext context) async {
     final result = await Navigator.push(
-      context, 
-      MaterialPageRoute(builder: (context) => 
-        CreateAlertPage())
-    );
+        context, MaterialPageRoute(builder: (context) => CreateAlertPage()));
 
     print(result);
   }
@@ -29,13 +26,11 @@ class MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-
       body: Container(
         child: ListView(
           children: a.map((e) => Text(e)).toList(),
         ),
       ),
-
       floatingActionButton: FloatingActionButton(
         onPressed: () => this.navigateToNewAlertPage(context),
         tooltip: 'Increment',
